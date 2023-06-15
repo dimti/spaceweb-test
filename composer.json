@@ -1,0 +1,27 @@
+{
+    "name": "dimti/spaceweb-test",
+    "description": "SpaceWeb Test Task",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dimti\\SpaceWebTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dimti",
+            "email": "demidov@dimti.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "config": {
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5@dev",
+        "php-curl-class/php-curl-class": "dev-master"
+    }
+}
