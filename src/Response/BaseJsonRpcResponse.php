@@ -8,20 +8,29 @@ abstract class BaseJsonRpcResponse implements JsonRpcResponse
 {
     use Castable;
 
-    public function __construct(stdClass $decodedCurlResponse)
+    public static function castToJsonRpcResponse(stdClass $decodedCurlResponse, JsonRpcResponse $castTo): JsonRpcResponse
     {
+        $jsonRpcResponse = $castTo;
+
+        if (isset($decodedCurlResponse->error) && $decodedCurlResponse->error) {
+            $jsonRpcResponse = new ErrorResponse();
+        }
+
+        $jsonRpcResponse->castDecodedResponse($decodedCurlResponse);
+
+        return $jsonRpcResponse;
+    }
+
+    public function castDecodedResponse(stdClass $decodedCurlResponse): void
+    {
+        $this->beforeCast($decodedCurlResponse);
+
         $this->cast($decodedCurlResponse);
     }
 
-    public static function castToJsonRpcResponse(stdClass $decodedCurlResponse)
+    public function beforeCast(stdClass $decodedCurlResponse): void
     {
-        if (isset($decodedCurlResponse->error) && $decodedCurlResponse->error) {
-            return new ErrorResponse($decodedCurlResponse);
-        }
 
-        $castTo = get_called_class();
-
-        return new $castTo($decodedCurlResponse);
     }
 
     /**

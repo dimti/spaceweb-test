@@ -1,6 +1,6 @@
 <?php namespace Dimti\SpaceWebTest\Response\NotAuthorized;
 
-class GetToken extends \Dimti\SpaceWebTest\Response\BaseJsonRpcResponse
+class GetTokenResponse extends \Dimti\SpaceWebTest\Response\BaseJsonRpcResponse
 {
     /**
      * @var string
